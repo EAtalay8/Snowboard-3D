@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class JoystickPlayerExample : MonoBehaviour
 {
-    public float forwardSpeed = 100;
+    public float forwardSpeed;
     public float rightSpeed = 0;
     public float horizontalSpeed;
 

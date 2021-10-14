@@ -56,17 +56,8 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Boost"))
         {
-            if(GetComponent<JoystickPlayerExample>().forwardSpeed > 40)
-                GetComponent<JoystickPlayerExample>().forwardSpeed += 20;
-            //StartCoroutine(SpeedDelay());
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Rival"))
-        {
-            GetComponent<JoystickPlayerExample>().forwardSpeed -= 10;
+            GetComponent<JoystickPlayerExample>().forwardSpeed = 200;
+            StartCoroutine(SpeedDelay());
         }
     }
 
@@ -79,7 +70,7 @@ public class Player : MonoBehaviour
 
     public IEnumerator ExitDelay()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         gameObject.transform.DORotate(new Vector3(0, 0, 0), 1);
     }
