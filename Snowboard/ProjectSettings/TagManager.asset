@@ -11,6 +11,9 @@ TagManager:
   - EndPoint
   - Boost
   - Rival
+  - Obstacle
+  - EndPlane
+  - FinishTrap
   layers:
   - Default
   - TransparentFX

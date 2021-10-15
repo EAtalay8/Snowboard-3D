@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "Sar\u0131"
+  m_Name: Coin
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 2
@@ -73,6 +73,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.7529023, b: 0, a: 1}
-    - _EmissionColor: {r: 0.3207547, g: 0.25342646, b: 0.21302953, a: 1}
+    - _Color: {r: 0.8962264, g: 0.5392662, b: 0.06256672, a: 1}
+    - _EmissionColor: {r: 0.3301887, g: 0.072897665, b: 0.010590936, a: 1}
   m_BuildTextureStacks: []

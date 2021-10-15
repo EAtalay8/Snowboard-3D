@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
+    public bool finishDecrease;
 
     public static Player instance;
 
@@ -59,6 +60,20 @@ public class Player : MonoBehaviour
             GetComponent<JoystickPlayerExample>().forwardSpeed += 30;
             //StartCoroutine(SpeedDelay());
         }
+
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            GetComponent<JoystickPlayerExample>().forwardSpeed = 0;
+            GetComponent<Animator>().SetBool("Falling", true);
+
+            StartCoroutine(FallinDelay());
+            //StartCoroutine(SpeedDelay());
+        }
+
+        if (other.gameObject.CompareTag("FinishTrap"))
+        {
+            
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -68,18 +83,24 @@ public class Player : MonoBehaviour
             if (GetComponent<JoystickPlayerExample>().forwardSpeed > 50)
                 GetComponent<JoystickPlayerExample>().forwardSpeed -= 20;
         }
+
+        if (collision.gameObject.CompareTag("EndPlane"))
+        {
+            //GetComponent<JoystickPlayerExample>().forwardSpeed = 0;
+            StartCoroutine(GameManager.instance.Win());
+        }
     }
 
     public IEnumerator RotateDelay()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(130f / GetComponent<JoystickPlayerExample>().forwardSpeed);
 
         gameObject.transform.DORotate(new Vector3(25, 0, 0), 1);
     }
 
     public IEnumerator ExitDelay()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(195f / GetComponent<JoystickPlayerExample>().forwardSpeed);
 
         gameObject.transform.DORotate(new Vector3(0, 0, 0), 1);
     }
@@ -89,5 +110,35 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         GetComponent<JoystickPlayerExample>().forwardSpeed = 100;
+    }
+
+    public IEnumerator FallinDelay()
+    {
+        yield return new WaitForSeconds(1);
+
+        //gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 20);
+
+        transform.DOMoveZ(transform.position.z - 50, 1);
+
+        GetComponent<Animator>().SetBool("Falling", false);
+
+        yield return new WaitForSeconds(1.5f);
+
+        GetComponent<JoystickPlayerExample>().forwardSpeed = 50;
+
+    }
+
+    public IEnumerator DecreaseSpeed()
+    {
+        if (finishDecrease)
+        {
+            finishDecrease = false;
+
+            yield return new WaitForSeconds(1);
+
+            GetComponent<JoystickPlayerExample>().forwardSpeed -= 20;
+
+            finishDecrease = true;
+        }
     }
 }
