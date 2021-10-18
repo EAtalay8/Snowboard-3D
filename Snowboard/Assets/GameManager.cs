@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
     public int coinCount = 0;
 
     public Text coinText;
-    public Text winCoinText;
-    public Text addCoinText;
+    //public Text winCoinText;
+    //public Text addCoinText;
     public Text standingsText;
     public Text standingsTextFinal;
 
@@ -59,8 +59,8 @@ public class GameManager : MonoBehaviour
 
 
         coinText.text = coinCount.ToString();
-        winCoinText.text = coinCount.ToString();
-        addCoinText.text = "+ " + coinCount.ToString();
+        //winCoinText.text = coinCount.ToString();
+        //addCoinText.text = "+ " + coinCount.ToString();
 
         if (Input.GetMouseButton(0))
         {

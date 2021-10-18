@@ -5,8 +5,7 @@ using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
-    public bool finishDecrease;
-
+    public GameObject speedText;
     public static Player instance;
 
     private void Awake()
@@ -59,6 +58,7 @@ public class Player : MonoBehaviour
         {
             GetComponent<JoystickPlayerExample>().forwardSpeed += 30;
             //StartCoroutine(SpeedDelay());
+            StartCoroutine(SpeedText());
         }
 
         if (other.gameObject.CompareTag("Obstacle"))
@@ -87,7 +87,9 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("EndPlane"))
         {
             //GetComponent<JoystickPlayerExample>().forwardSpeed = 0;
-            StartCoroutine(GameManager.instance.Win());
+            //StartCoroutine(GameManager.instance.Win());
+
+            StartCoroutine(DecreaseSpeed());
         }
     }
 
@@ -130,15 +132,28 @@ public class Player : MonoBehaviour
 
     public IEnumerator DecreaseSpeed()
     {
-        if (finishDecrease)
+        if (!(GetComponent<JoystickPlayerExample>().forwardSpeed <= 0))
         {
-            finishDecrease = false;
 
             yield return new WaitForSeconds(1);
 
             GetComponent<JoystickPlayerExample>().forwardSpeed -= 20;
 
-            finishDecrease = true;
+            StartCoroutine(DecreaseSpeed());
         }
+
+        else
+        {
+            StartCoroutine(GameManager.instance.Win());
+        }
+    }
+
+    public IEnumerator SpeedText()
+    {
+        speedText.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+
+        speedText.SetActive(false);
     }
 }
