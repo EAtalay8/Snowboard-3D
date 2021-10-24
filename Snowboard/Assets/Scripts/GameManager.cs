@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Cinemachine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -81,9 +82,26 @@ public class GameManager : MonoBehaviour
         //JoystickPlayerExample.instance.rightSpeed = 100;
         vcam2.GetComponent<CinemachineVirtualCamera>().Priority = 11;
 
+        vcam2.transform.GetChild(2).gameObject.SetActive(true);
+
         Player.instance.GetComponent<JoystickPlayerExample>().enabled = false;
         //Rival.instance.forwardSpeed = 0;
         winPanel.SetActive(true);
         startPanel.SetActive(false);
+
+        yield return new WaitForSeconds(1);
+
+        Player.instance.GetComponent<Animator>().SetBool("Flip", true);
+
+        yield return new WaitForSeconds(0.1f);
+
+        Player.instance.GetComponent<Animator>().SetBool("Flip", false);
+
+        Player.instance.GetComponent<Animator>().SetBool("First", true);
+    }
+
+    public void Next()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }

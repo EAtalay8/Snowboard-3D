@@ -72,7 +72,8 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("FinishTrap"))
         {
-            
+            transform.GetChild(8).gameObject.SetActive(false);
+            StartCoroutine(Flip());
         }
     }
 
@@ -82,6 +83,8 @@ public class Player : MonoBehaviour
         {
             if (GetComponent<JoystickPlayerExample>().forwardSpeed > 50)
                 GetComponent<JoystickPlayerExample>().forwardSpeed -= 20;
+
+            
         }
 
         if (collision.gameObject.CompareTag("EndPlane"))
@@ -90,21 +93,37 @@ public class Player : MonoBehaviour
             //StartCoroutine(GameManager.instance.Win());
 
             StartCoroutine(DecreaseSpeed());
+            transform.GetChild(8).gameObject.SetActive(true);
         }
     }
 
     public IEnumerator RotateDelay()
     {
+        transform.GetChild(8).gameObject.SetActive(false);
+        GetComponent<Animator>().SetBool("Flip", true);
+
+        yield return new WaitForSeconds(0.1f);
+
+        GetComponent<Animator>().SetBool("Flip", false);
+
         yield return new WaitForSeconds(130f / GetComponent<JoystickPlayerExample>().forwardSpeed);
 
         gameObject.transform.DORotate(new Vector3(25, 0, 0), 1);
+
+        yield return new WaitForSeconds(255 / GetComponent<JoystickPlayerExample>().forwardSpeed);
+
+        transform.GetChild(8).gameObject.SetActive(true);
     }
 
     public IEnumerator ExitDelay()
     {
+        transform.GetChild(8).gameObject.SetActive(false);
+
         yield return new WaitForSeconds(195f / GetComponent<JoystickPlayerExample>().forwardSpeed);
 
         gameObject.transform.DORotate(new Vector3(0, 0, 0), 1);
+
+        transform.GetChild(8).gameObject.SetActive(true);
     }
 
     public IEnumerator SpeedDelay()
@@ -155,5 +174,29 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         speedText.SetActive(false);
+    }
+
+    public IEnumerator SnowBall()
+    {
+        GetComponent<Animator>().SetBool("Snowball", true);
+
+        yield return new WaitForSeconds(0.1f);
+
+        GetComponent<Animator>().SetBool("Snowball", false);
+
+        yield return new WaitForSeconds(.5f);
+
+        Time.timeScale = 1;
+    }
+
+    public IEnumerator Flip()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        GetComponent<Animator>().SetBool("Flip", true);
+
+        yield return new WaitForSeconds(0.1f);
+
+        GetComponent<Animator>().SetBool("Flip", false);
     }
 }
