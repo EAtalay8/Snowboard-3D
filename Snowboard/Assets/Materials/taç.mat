@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 6x
+  m_Name: "ta\xE7"
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 2
@@ -73,6 +73,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.18431371, b: 0.329276, a: 1}
-    - _EmissionColor: {r: 0.2, g: 0.044749416, b: 0.011764705, a: 1}
+    - _Color: {r: 1, g: 0.65891445, b: 0, a: 1}
+    - _EmissionColor: {r: 0.4716981, g: 0.12168364, b: 0.0062299506, a: 1}
   m_BuildTextureStacks: []
