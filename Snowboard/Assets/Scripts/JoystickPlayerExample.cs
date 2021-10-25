@@ -27,7 +27,8 @@ public class JoystickPlayerExample : MonoBehaviour
             Vector3 direction = Vector3.forward * variableJoystick.Vertical + Vector3.right * variableJoystick.Horizontal;
             //rb.AddForce(new Vector3(0, 0, 1) * forwardSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
-            gameObject.transform.Translate(Vector3.right * Time.deltaTime * horizontalSpeed * direction.x);
+            if(player.transform.position.x < 29 && direction.x > 0 || player.transform.position.x > -29 && direction.x < 0)
+                gameObject.transform.Translate(Vector3.right * Time.deltaTime * horizontalSpeed * direction.x);
 
 
 
@@ -51,7 +52,7 @@ public class JoystickPlayerExample : MonoBehaviour
 
             player.transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime);
 
-            player.transform.Translate(Vector3.right * rightSpeed * Time.deltaTime);
+            //player.transform.Translate(Vector3.right * rightSpeed * Time.deltaTime);
         }
     }
 

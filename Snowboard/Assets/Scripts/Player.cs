@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
         {
             Destroy(other.gameObject);
             GameManager.instance.coinCount++;
+            GameManager.instance.CoinEffect(gameObject);
         }
 
         if (other.gameObject.CompareTag("EndPoint"))

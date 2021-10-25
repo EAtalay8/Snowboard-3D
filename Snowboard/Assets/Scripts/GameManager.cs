@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public Text standingsText;
     public Text standingsTextFinal;
 
+    public GameObject coinEffect;
     public GameObject winPanel;
     public GameObject startPanel;
 
@@ -72,6 +73,12 @@ public class GameManager : MonoBehaviour
         {
             tapToStart.SetActive(false);
         }
+    }
+
+    public void CoinEffect(GameObject gameObject)
+    {
+        GameObject coinEffectIns = Instantiate(coinEffect, gameObject.transform.position, coinEffect.transform.rotation);
+        Destroy(coinEffectIns, 3f);
     }
 
     public IEnumerator Win()

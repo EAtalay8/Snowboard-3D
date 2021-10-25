@@ -9,10 +9,11 @@ public class Casting : MonoBehaviour
 
     public float targetDistance;
 
+    RaycastHit TheHit;
     // Update is called once per frame
     void FixedUpdate()
     {
-        RaycastHit TheHit;
+        //RaycastHit TheHit;
 
         if(Physics.Raycast(new Vector3(transform.position.x,transform.position.y + 1, transform.position.z), transform.TransformDirection (transform.forward), out TheHit))
         {
@@ -31,8 +32,7 @@ public class Casting : MonoBehaviour
             TheHit.collider.gameObject.tag = "Untagged";
             TheHit.collider.gameObject.transform.eulerAngles = new Vector3(0, 60, 0);
 
-            snow.transform.parent = null;
-            snow.transform.DOMove((TheHit.collider.gameObject.transform.position), 0.5f).SetEase(Ease.Linear);
+            StartCoroutine(SnowBallDelay());
 
             StartCoroutine(Player.instance.SnowBall());
         }
@@ -41,5 +41,13 @@ public class Casting : MonoBehaviour
         {
             Debug.Log("okay abim");
         }
+    }
+
+    public IEnumerator SnowBallDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        snow.transform.parent = null;
+        snow.transform.DOMove((TheHit.collider.gameObject.transform.position), 0.3f).SetEase(Ease.Linear);
     }
 }
