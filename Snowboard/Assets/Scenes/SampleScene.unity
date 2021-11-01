@@ -6871,10 +6871,9 @@ MonoBehaviour:
   tap: 0
   coinCount: 0
   coinText: {fileID: 1959551116}
-  winCoinText: {fileID: 320509433}
-  addCoinText: {fileID: 1243592317}
   standingsText: {fileID: 639674352}
   standingsTextFinal: {fileID: 1854714590}
+  coinEffect: {fileID: 0}
   winPanel: {fileID: 1915903096}
   startPanel: {fileID: 1432770270}
   vcam2: {fileID: 942687474}

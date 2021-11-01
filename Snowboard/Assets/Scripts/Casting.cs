@@ -5,11 +5,21 @@ using DG.Tweening;
 
 public class Casting : MonoBehaviour
 {
+    public GameObject snowPrefab;
+    public Transform rightHand;
+    public Transform snowPos;
+
     public GameObject snow;
 
     public float targetDistance;
 
     RaycastHit TheHit;
+
+    private void Start()
+    {
+        snow = Instantiate(snowPrefab, snowPos.transform.position, snowPos.rotation, rightHand);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -45,9 +55,15 @@ public class Casting : MonoBehaviour
 
     public IEnumerator SnowBallDelay()
     {
+        snow.transform.GetChild(0).gameObject.SetActive(true);
         yield return new WaitForSeconds(0.2f);
 
         snow.transform.parent = null;
         snow.transform.DOMove((TheHit.collider.gameObject.transform.position), 0.3f).SetEase(Ease.Linear);
+
+        //yield return new WaitForSeconds(0.5f);
+        //snow.transform.GetChild(0).gameObject.SetActive(false);
+
+        snow = Instantiate(snowPrefab, snowPos.transform.position, snowPos.rotation, rightHand);
     }
 }

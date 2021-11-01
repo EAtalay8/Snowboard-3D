@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
         {
             Destroy(other.gameObject);
             GameManager.instance.coinCount++;
-            GameManager.instance.CoinEffect(gameObject);
+            GameManager.instance.CoinEffect(gameObject); 
         }
 
         if (other.gameObject.CompareTag("EndPoint"))
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         {
             GetComponent<JoystickPlayerExample>().forwardSpeed += 30;
             //StartCoroutine(SpeedDelay());
-            StartCoroutine(SpeedText());
+            //StartCoroutine(SpeedText());
         }
 
         if (other.gameObject.CompareTag("Obstacle"))
