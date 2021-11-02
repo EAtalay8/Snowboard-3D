@@ -66,10 +66,13 @@ public class GameManager : MonoBehaviour
             tapToStart.SetActive(false);
         }
 
+
+
         switch (status)
         {
             case GameStatus.empty:
                 //bir prefabý var olan objeleri sahneye ekleyeceðim
+
                 whichLevel = PlayerPrefs.GetInt("whichLevel");
 
                 if (PlayerPrefs.GetInt("randomLevel") > 0)
@@ -96,6 +99,9 @@ public class GameManager : MonoBehaviour
             case GameStatus.next:
                 break;
         }
+
+        Debug.Log(PlayerPrefs.GetInt("whichLevel") + " prefs");
+        Debug.Log(whichLevel);
 
 
         if (Standings.instance.order == 8 || Standings.instance.order == 7 || Standings.instance.order == 6 || Standings.instance.order == 5 || Standings.instance.order == 4)
@@ -145,6 +151,16 @@ public class GameManager : MonoBehaviour
 
     public void Next()
     {
+        whichLevel++;
+        PlayerPrefs.SetInt("whichLevel", whichLevel);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+
+        status = GameStatus.empty;
+
+        if (whichLevel >= levels.Length)
+        {
+            whichLevel--;
+            PlayerPrefs.SetInt("randomLevel", 1);
+        }
     }
 }

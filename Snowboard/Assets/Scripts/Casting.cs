@@ -49,7 +49,7 @@ public class Casting : MonoBehaviour
 
         else
         {
-            Debug.Log("okay abim");
+            //Debug.Log("okay abim");
         }
     }
 

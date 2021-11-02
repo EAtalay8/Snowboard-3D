@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Buket sahne.unity
+    guid: 5b92c2fb544526e44809f259cf73c223
   m_configObjects: {}

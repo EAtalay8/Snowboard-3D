@@ -102,6 +102,6 @@ public class Standings : MonoBehaviour
             }
         }
 
-        Debug.Log(order);
+        //Debug.Log(order);
     }
 }
