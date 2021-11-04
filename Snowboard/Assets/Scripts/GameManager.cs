@@ -19,8 +19,12 @@ public class GameManager : MonoBehaviour
     public GameObject tapToStart;
     public bool tap = false;
 
+    public int levelForText = 1;
     public int coinCount = 0;
 
+    [Header("Texts")]
+
+    public Text levelText;
     public Text coinText;
     //public Text winCoinText;
     //public Text addCoinText;
@@ -32,6 +36,7 @@ public class GameManager : MonoBehaviour
     [Header("Panels")]
 
     public GameObject winPanel;
+    public GameObject failPanel;
     public GameObject startPanel;
 
     public static GameManager instance;
@@ -53,6 +58,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         coinText.text = coinCount.ToString();
+
         //winCoinText.text = coinCount.ToString();
         //addCoinText.text = "+ " + coinCount.ToString();
 
@@ -73,7 +79,11 @@ public class GameManager : MonoBehaviour
             case GameStatus.empty:
                 //bir prefabý var olan objeleri sahneye ekleyeceðim
 
+                levelForText = PlayerPrefs.GetInt("level");
                 whichLevel = PlayerPrefs.GetInt("whichLevel");
+                
+
+                levelText.text = (levelForText + 1).ToString();
 
                 if (PlayerPrefs.GetInt("randomLevel") > 0)
                 {
@@ -149,9 +159,20 @@ public class GameManager : MonoBehaviour
         Player.instance.GetComponent<Animator>().SetBool("First", true);
     }
 
+    public IEnumerator Fail()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        failPanel.SetActive(true);
+        Player.instance.GetComponent<JoystickPlayerExample>().enabled = false;
+    }
+
     public void Next()
     {
         whichLevel++;
+        levelForText++;
+
+        PlayerPrefs.SetInt("level", levelForText);
         PlayerPrefs.SetInt("whichLevel", whichLevel);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 
@@ -162,5 +183,10 @@ public class GameManager : MonoBehaviour
             whichLevel--;
             PlayerPrefs.SetInt("randomLevel", 1);
         }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }

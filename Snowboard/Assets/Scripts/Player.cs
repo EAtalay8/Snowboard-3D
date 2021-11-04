@@ -76,6 +76,11 @@ public class Player : MonoBehaviour
             transform.GetChild(8).gameObject.SetActive(false);
             StartCoroutine(Flip());
         }
+
+        if (other.gameObject.CompareTag("FailTrigger"))
+        {
+            StartCoroutine(GameManager.instance.Fail());
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -157,7 +162,7 @@ public class Player : MonoBehaviour
 
             yield return new WaitForSeconds(1);
 
-            GetComponent<JoystickPlayerExample>().forwardSpeed -= 20;
+            GetComponent<JoystickPlayerExample>().forwardSpeed -= 40;
 
             StartCoroutine(DecreaseSpeed());
         }
