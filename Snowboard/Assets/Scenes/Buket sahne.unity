@@ -259,7 +259,7 @@ RectTransform:
   - {fileID: 1325915752}
   - {fileID: 386344049}
   m_Father: {fileID: 781604819}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -3623,7 +3623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5189,9 +5189,9 @@ RectTransform:
   m_Children:
   - {fileID: 2077590157}
   - {fileID: 690163376}
-  - {fileID: 903888818}
   - {fileID: 668213500}
   - {fileID: 38143444}
+  - {fileID: 903888818}
   - {fileID: 465324646}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -5475,7 +5475,7 @@ RectTransform:
   - {fileID: 2006508935}
   - {fileID: 1108205182}
   m_Father: {fileID: 781604819}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5999,7 +5999,7 @@ MonoBehaviour:
   subpixelMorphologicalAntialiasing:
     quality: 2
   fastApproximateAntialiasing:
-    fastMode: 0
+    fastMode: 1
     keepAlpha: 0
   fog:
     enabled: 1
