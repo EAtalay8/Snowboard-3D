@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
                 levelForText = PlayerPrefs.GetInt("level");
                 whichLevel = PlayerPrefs.GetInt("whichLevel");
-                
+                coinCount = PlayerPrefs.GetInt("coinCount");
 
                 levelText.text = (levelForText + 1).ToString();
 
@@ -174,6 +174,8 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("level", levelForText);
         PlayerPrefs.SetInt("whichLevel", whichLevel);
+        PlayerPrefs.SetInt("coinCount", coinCount);
+
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 
         status = GameStatus.empty;
